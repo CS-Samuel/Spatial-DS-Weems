@@ -152,6 +152,14 @@ class StateBorders(object):
                 return True
         return False
 
+    def get_name(self,key):
+
+        for c in self.content['features']:
+            if c['id'].lower() == key.lower():
+                return c['properties']['name']
+            if c['properties']['name'].lower() == key.lower():
+                return c['properties']['name']
+
 #####################################################################################
 #####################################################################################
 
@@ -221,6 +229,17 @@ class WorldCountries(object):
             elif c['properties']['name'].lower() == key.lower():
                 return True
         return False
+
+    def get_name(self,key):
+
+        for c in self.content['features']:
+            if c['id'].lower() == key.lower():
+                return c['properties']['name']
+            if c['properties']['name'].lower() == key.lower():
+                return c['properties']['name']
+        
+
+
             
 
 #####################################################################################
@@ -238,6 +257,10 @@ class DrawGeoJson(object):
         self.screen = screen    # window handle for pygame drawing
 
         self.polygons = []      # list of lists (polygons) to be drawn
+
+        self.polygonsXY_withNames = {}    # Dictionary of Lat,Long polygons adjusted for X,Y coordinates, key is name, value is xy coords
+        self.polygonsXY = []
+       
 
         self.all_lats = []      # list for all lats so we can find mins and max's
         self.all_lons = []
@@ -289,7 +312,7 @@ class DrawGeoJson(object):
         self.__update_bounds()
 
 
-    def draw_polygons(self):
+    def draw_polygons(self,names):
         """
         Draw our polygons to the screen
         Args:
@@ -303,8 +326,13 @@ class DrawGeoJson(object):
             adjusted = []
             for p in poly:
                 x,y = p
-                adjusted.append(self.convertGeoToPixel(x,y))
+                adjusted.append(self.convertGeoToPixel(x,y)) 
+               
+            self.polygonsXY.append(adjusted)
             pygame.draw.polygon(self.screen, self.colors.get_random_color(), adjusted, 0)
+            
+        for i in range(len(names)):
+            self.polygonsXY_withNames[names[i]] = self.polygonsXY[i]
 
     def __update_bounds(self):
         """
@@ -341,8 +369,8 @@ class DrawingFacade(object):
         self.sb = StateBorders(DIRPATH + '/Json_Files/state_borders.json')
         self.wc = WorldCountries(DIRPATH + '/Json_Files/countries.geo.json')
         self.gd = DrawGeoJson(screen,width,height)
-
-        self.gd.funkychicken = 45
+    
+        self.names =[]
 
     def add_polygons(self,ids):
         """
@@ -355,13 +383,16 @@ class DrawingFacade(object):
             None
 
         Usage:
-            df.add_polygons(['FRA','TX','ESP','AFG','NY','ME','Kenya'])
+            df.add_polygons(['FRA', 'ESP','AFG','NY','ME','Kenya'])
         """ 
         for id in ids:
             if self.wc.key_exists(id):
-                self.__add_country(self.wc.get_country(id))
+                self.__add_country(self.wc.get_country(id)) 
+                self.names.append(self.wc.get_name(id))   
             elif self.sb.key_exists(id):
-                self.__add_state(self.sb.get_state(id))         
+                self.__add_state(self.sb.get_state(id))
+                self.names.append(self.sb.get_name(id))   
+                       
 
     def __add_country(self,country):
         for polys in country:
@@ -441,23 +472,32 @@ if __name__ == '__main__':
 
     # Instances of our drawing classes
     gd = DrawGeoJson(screen,width,height)
-    df = DrawingFacade(width,height)
-
-    print(gd.__dict__)    
+    df = DrawingFacade(width,height) 
 
     # Add countries and states to our drawing facade.
     # df.add_polygons(['FRA','TX','ESP','AFG','NY'])
     # df.add_polygons(['TX','NY','ME','Kenya'])
-    df.add_polygons(['TX','Spain','France','Belgium','Italy','Ireland','Scotland','Greece','Germany','Egypt','Morocco','India'])
+    df.add_polygons(['Spain','France','Belgium','Italy','Ireland','Scotland','Greece','Germany','Egypt','Morocco','India'])
+    
+    gd.draw_polygons(df.names)
 
+    print (gd.polygonsXY_withNames)
+
+    black = (0,0,0)
 
     # Main loop
     running = True
     while running:
-        gd.draw_polygons()
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                print(event.pos)
+                p = (event.pos)
+                x,y = p
+                for k,v in gd.polygonsXY_withNames.items():
+                    if point_inside_polygon(x,y,v):
+                        pygame.draw.polygon(screen, black, v, 5)
+               
+            
             pygame.display.flip()
