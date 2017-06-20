@@ -22,7 +22,7 @@ if __name__=='__main__':
     screen.fill(background_colour)
 
     pygame.display.flip()
-    f = open('assignment.json','r')
+    f = open('quake-assignment-adjusted.json','r')
     points = json.loads(f.read())
     
     running = True

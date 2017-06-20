@@ -47,7 +47,7 @@ def adjust_location_coords(extremes,points,width,height):
         x = float(x)
         y = float(y)
         xprime = (x - minx) / deltax         # val (0,1)
-        yprime = 1.0 - ((y - miny) / deltay) # val (0,1)
+        yprime = ((y - miny) / deltay)       # val (0,1)
         adjx = int(xprime*width)
         adjy = int(yprime*height)
         adjusted.append((adjx,adjy))
@@ -64,7 +64,7 @@ if __name__=='__main__':
     points = []
 
     # Loop through converting lat/lon to x/y and saving extreme values. 
-    for quake in data:
+    for quake in data["features"]:
         #st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
         lon = quake['geometry']['coordinates'][0]
         lat = quake['geometry']['coordinates'][1]

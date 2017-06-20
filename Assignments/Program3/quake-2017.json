@@ -11,6 +11,46 @@
         {
             "geometry": {
                 "coordinates": [
+                    102.0433,
+                    -4.2092,
+                    74.84
+                ],
+                "type": "Point"
+            },
+            "id": "us20009nrs",
+            "properties": {
+                "alert": null,
+                "cdi": 3.1,
+                "code": "20009nrs",
+                "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us20009nrs&format=geojson",
+                "dmin": 0.922,
+                "felt": 1,
+                "gap": 54,
+                "ids": ",us20009nrs,",
+                "mag": 5.1,
+                "magType": "mb",
+                "mmi": null,
+                "net": "us",
+                "nst": null,
+                "place": "51km SSW of Bengkulu, Indonesia",
+                "rms": 1.05,
+                "sig": 400,
+                "sources": ",us,",
+                "status": "reviewed",
+                "time": 1497982902090,
+                "title": "M 5.1 - 51km SSW of Bengkulu, Indonesia",
+                "tsunami": 1,
+                "type": "earthquake",
+                "types": ",dyfi,geoserve,origin,phase-data,",
+                "tz": 420,
+                "updated": 1497984322836,
+                "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us20009nrs"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
                     128.5733,
                     2.3178,
                     35
@@ -51,9 +91,9 @@
         {
             "geometry": {
                 "coordinates": [
-                    132.0165,
-                    32.8615,
-                    51.17
+                    132.028,
+                    32.8813,
+                    45.31
                 ],
                 "type": "Point"
             },
@@ -63,27 +103,27 @@
                 "cdi": 3.8,
                 "code": "20009npy",
                 "detail": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=us20009npy&format=geojson",
-                "dmin": 0.993,
-                "felt": 20,
+                "dmin": 0.997,
+                "felt": 21,
                 "gap": 101,
                 "ids": ",us20009npy,",
-                "mag": 5.2,
-                "magType": "mb",
+                "mag": 5,
+                "magType": "mww",
                 "mmi": null,
                 "net": "us",
                 "nst": null,
-                "place": "14km SE of Saiki, Japan",
-                "rms": 1.06,
-                "sig": 424,
+                "place": "14km ESE of Saiki, Japan",
+                "rms": 0.74,
+                "sig": 393,
                 "sources": ",us,",
                 "status": "reviewed",
-                "time": 1497968861630,
-                "title": "M 5.2 - 14km SE of Saiki, Japan",
+                "time": 1497968861520,
+                "title": "M 5.0 - 14km ESE of Saiki, Japan",
                 "tsunami": 0,
                 "type": "earthquake",
-                "types": ",dyfi,geoserve,origin,phase-data,",
+                "types": ",dyfi,geoserve,moment-tensor,origin,phase-data,",
                 "tz": 540,
-                "updated": 1497979478687,
+                "updated": 1497983071341,
                 "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us20009npy"
             },
             "type": "Feature"
@@ -30011,8 +30051,8 @@
     ],
     "metadata": {
         "api": "1.5.8",
-        "count": 750,
-        "generated": 1497980929000,
+        "count": 751,
+        "generated": 1497984390000,
         "status": 200,
         "title": "USGS Earthquakes",
         "url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2017-1-01&endtime=2017-12-01&minmagnitude=5"

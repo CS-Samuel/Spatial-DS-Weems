@@ -2,6 +2,23 @@
     {
         "geometry": {
             "coordinates": [
+                102.0433,
+                -4.2092,
+                74.84
+            ],
+            "type": "Point"
+        },
+        "mag": 5.1,
+        "magType": "mb",
+        "place": "51km SSW of Bengkulu, Indonesia",
+        "rms": 1.05,
+        "sig": 400,
+        "time": 1497982902090,
+        "types": ",dyfi,geoserve,origin,phase-data,"
+    },
+    {
+        "geometry": {
+            "coordinates": [
                 128.5733,
                 2.3178,
                 35
@@ -19,19 +36,19 @@
     {
         "geometry": {
             "coordinates": [
-                132.0165,
-                32.8615,
-                51.17
+                132.028,
+                32.8813,
+                45.31
             ],
             "type": "Point"
         },
-        "mag": 5.2,
-        "magType": "mb",
-        "place": "14km SE of Saiki, Japan",
-        "rms": 1.06,
-        "sig": 424,
-        "time": 1497968861630,
-        "types": ",dyfi,geoserve,origin,phase-data,"
+        "mag": 5,
+        "magType": "mww",
+        "place": "14km ESE of Saiki, Japan",
+        "rms": 0.74,
+        "sig": 393,
+        "time": 1497968861520,
+        "types": ",dyfi,geoserve,moment-tensor,origin,phase-data,"
     },
     {
         "geometry": {
