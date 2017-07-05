@@ -1,4 +1,5 @@
 Mongo Database Name: World_Data
+
 Collection Names:
   airports
   states
@@ -8,6 +9,9 @@ Collection Names:
   
   Batch file run from Windows based platform with geojson files in this location:
     C:\Users\Admin\OneDrive\4553-Spatial-DS\Spatial-DS-Weems\Assignments\program_5\geojson\
+  
+  Batch file needs to be in Mongo folder /bin
+ 
     
 Example Queries:
 
